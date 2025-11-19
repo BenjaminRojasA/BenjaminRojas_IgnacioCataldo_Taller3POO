@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public class AppMain {
 	private static Sistema system = SistemaImp.getInstance();
-	private static Scanner s;
+	private static Scanner Escaner;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		cargarUsuarios();
@@ -16,12 +16,12 @@ public class AppMain {
 	
 	
 	private static void cargarTareas() throws FileNotFoundException {
-		s = new Scanner(new File("tareas.txt"));
+		Escaner = new Scanner(new File("tareas.txt"));
 		
-		while (s.hasNextLine()) {
-			String linea = s.nextLine();
-			String[] partes = linea.split("|");
-			system.crearTarea(partes);
+		while (Escaner.hasNextLine()) {
+			String linea = Escaner.nextLine();
+			String[] partesUsuario = linea.split("|");
+			system.crearTarea(partesUsuario);
 			
 			}
 		
@@ -29,12 +29,12 @@ public class AppMain {
 
 
 	private static void cargarProyectos() throws FileNotFoundException {
-		s = new Scanner(new File("proyectos.txt"));
+		Escaner = new Scanner(new File("proyectos.txt"));
 		
-		while (s.hasNextLine()) {
-			String linea = s.nextLine();
-			String[] partes = linea.split("|");
-			system.crearProyecto(partes);
+		while (Escaner.hasNextLine()) {
+			String linea = Escaner.nextLine();
+			String[] partesProyecto = linea.split("|");
+			system.crearProyecto(partesProyecto);
 			
 			}
 		
@@ -42,12 +42,12 @@ public class AppMain {
 
 
 	private static void cargarUsuarios() throws FileNotFoundException {
-		s = new Scanner(new File("usuarios.txt"));
+		Escaner = new Scanner(new File("usuarios.txt"));
 		
-		while (s.hasNextLine()) {
-			String linea = s.nextLine();
-			String[] partes = linea.split("|");
-			system.crearUsuario(partes);
+		while (Escaner.hasNextLine()) {
+			String linea = Escaner.nextLine();
+			String[] partesTarea = linea.split("|");
+			system.crearUsuario(partesTarea);
 			
 			}
 	}	
