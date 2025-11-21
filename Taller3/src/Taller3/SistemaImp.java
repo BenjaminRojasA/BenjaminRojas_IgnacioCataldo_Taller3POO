@@ -62,6 +62,12 @@ public class SistemaImp implements Sistema {
 		String fechaTarea = partesTarea[7];
 		Tarea tarea = FactoryTarea.crearTarea(idProyecto, idTarea, tipoTarea, descripcionTarea, estadoTarea, responsableTarea, complejidadTarea, fechaTarea);
 		
+		for (Usuario usuario : usuarios) {
+			if (usuario.getUsuario().equals(responsableTarea)) {
+				usuario.agregarTarea(tarea);
+			}
+		}
+		
 		for (Proyecto proyecto : proyectos) {
 			if (proyecto.getId().equals(idProyecto)) {
 				proyecto.agregarTarea(tarea);
@@ -69,9 +75,12 @@ public class SistemaImp implements Sistema {
 		}
 		
 		tareas.add(tarea);
+			
+	}
+	
+	@Override
+	public ArrayList<Usuario> verUsuarios() {
 		
-		
-		
-		
+		return usuarios;
 	}
 }

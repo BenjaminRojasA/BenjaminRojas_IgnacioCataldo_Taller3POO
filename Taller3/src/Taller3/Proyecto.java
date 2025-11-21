@@ -24,6 +24,12 @@ public class Proyecto {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Proyecto [id=" + id + ", nombre=" + nombre + ", responsable=" + responsable + ", tareas=" + tareas
+				+ "]";
+	}
+
 	
 	
 	
