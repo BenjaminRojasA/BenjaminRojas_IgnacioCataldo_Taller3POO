@@ -7,6 +7,7 @@ import Factory.FactoryTarea;
 import Factory.FactoryUsuario;
 
 public class SistemaImp implements Sistema {
+	
 	//-----------------------listas de objetos--------------------
 	private static ArrayList<Usuario> usuarios = new ArrayList<>();
 	private static ArrayList<Proyecto> proyectos = new ArrayList<>();
@@ -80,7 +81,84 @@ public class SistemaImp implements Sistema {
 	
 	@Override
 	public ArrayList<Usuario> verUsuarios() {
-		
 		return usuarios;
 	}
+	@Override
+	public ArrayList<Proyecto> verProyectos() {		
+		return proyectos;
+	}
+	@Override
+	public void agregarProyecto(String idProyecto, String nombreProyecto, String responsableProyecto) {
+		Proyecto proyecto = FactoryProyecto.crearProyecto(idProyecto, nombreProyecto, responsableProyecto);
+		proyectos.add(proyecto);
+		
+	}
+	@Override
+	public void eliminarProyecto(String idProyecto) {
+		for (Proyecto proyecto : proyectos) {
+			if (proyecto.getId().equals(idProyecto)) {
+				ArrayList<Tarea> tareasProyecto = proyecto.getTareas();
+				tareasProyecto = null;
+				for (Tarea tareaBuscada : tareas) {
+					if (tareaBuscada.getIdproyecto().equals(idProyecto)) {
+						tareaBuscada.setIdproyecto("Sin proyecto asignado.");
+					}
+				}
+				proyectos.remove(proyecto);
+				break;
+			}
+		}
+			
+		
+	}
+	 
+	
+	@Override
+	public void agregarTarea(String idProyecto, String idTarea, String tipoTarea, String descripcionTarea,
+			String estadoInicialTarea, String responsableTarea, String complejidadTarea, String fechaTarea) {
+		
+		Tarea tareaCreada = FactoryTarea.crearTarea(idProyecto, idTarea, tipoTarea, descripcionTarea, estadoInicialTarea, responsableTarea, complejidadTarea, fechaTarea);
+		tareas.add(tareaCreada);
+		
+		for (Proyecto proyectoBuscado : proyectos ) {
+			if (proyectoBuscado.getId().equals(idProyecto)) {
+				proyectoBuscado.getTareas().add(tareaCreada);
+			}
+		}
+		
+		for (Usuario usuarioBuscado : usuarios) {
+			if (usuarioBuscado.getUsuario().equals(responsableTarea)) {
+				int contadorTareaMismaFecha = 0;
+				for (Tarea tarea : usuarioBuscado.getTareas()) {
+					if (tarea.getFecha().equals(fechaTarea)) {
+						contadorTareaMismaFecha +=1;
+					}
+				if (contadorTareaMismaFecha == 0) {
+					usuarioBuscado.getTareas().add(tareaCreada);
+				} 
+				
+				}
+			}
+		}
+	}
+	@Override
+	public void eliminarTarea(String idProyecto, String idTarea, String tipoTarea, String descripcionTarea,
+			String estadoInicialTarea, String responsableTarea, String complejidadTarea, String fechaTarea) {
+		for (Tarea tareaBuscada : tareas) {
+			if (tareaBuscada.getIdTarea().equals(idTarea)) {
+				for (Proyecto proyectoBuscado : proyectos) {
+					if (proyectoBuscado.getId().equals(idProyecto)) {
+						proyectoBuscado.getTareas().remove(tareaBuscada);
+					}
+				}
+				for (Usuario usuarioBuscado : usuarios) {
+					if (usuarioBuscado.getUsuario().equals(responsableTarea)) {
+						usuarioBuscado.getTareas().remove(tareaBuscada);
+					}
+				}
+			}
+		}
+		
+	}
+	
 }

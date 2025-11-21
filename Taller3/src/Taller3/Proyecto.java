@@ -18,12 +18,16 @@ public class Proyecto {
 	public String getId() {
 		return id;
 	}
+	
+	public ArrayList<Tarea> getTareas() {
+		return tareas;
+	}
 
 	public void agregarTarea(Tarea tarea) {
 		tareas.add(tarea);
 		
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Proyecto [id=" + id + ", nombre=" + nombre + ", responsable=" + responsable + ", tareas=" + tareas

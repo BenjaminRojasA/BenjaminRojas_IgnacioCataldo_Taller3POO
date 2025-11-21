@@ -1,6 +1,8 @@
 package Taller3;
 
-public class Tarea {
+import Visitador.Visitor;
+
+public abstract class Tarea {
 	private String idproyecto;
 	private String idTarea;
 	private String tipo;
@@ -27,8 +29,20 @@ public class Tarea {
 		return idTarea;
 	}
 	
+	public void setIdproyecto(String idproyecto) {
+		this.idproyecto = idproyecto;
+	}
+
+	public String getIdproyecto() {
+		return idproyecto;
+	}
+
 	public String getEstado() {
 		return estado;
+	}
+	
+	public String getFecha() {
+		return fecha;
 	}
 
 	public void setEstado(String estado) {
@@ -42,7 +56,7 @@ public class Tarea {
 				+ complejidad + ", fecha=" + fecha + "]";
 	}
 	
-	
+	public abstract void accept(Visitor visitorImprimirTarea);
 	
 	 
 	
