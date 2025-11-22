@@ -1,35 +1,3 @@
-Proyecto de Gestión de Tareas TaskForge Ltda. (Taller 03 POO)
-Integrantes
-Benjamín Rojas
-RUT: 22.086.016-7
-Carrera: ICCI
-GitHub: @benjaminrojas
-
-Ignacio Cataldo
-RUT: 21.944.808-2
-Carrera: ICCI
-GitHub: @ignaciocataldo
-
-Docentes
-[cite_start]Alejandro Paolini Godoy [cite: 7]
-[cite_start]Cristhian Rabi Reyes [cite: 8]
-
-Ayudantes
-[cite_start]Daniel Durán García [cite: 11]
-[cite_start]Nicolás Rojas Bustos [cite: 11]
-
-Contexto
-[cite_start]Nos situamos en el año 2035[cite: 13]. [cite_start]La empresa TaskForge Ltda. ha solicitado el desarrollo de una herramienta de gestión de proyectos para su equipo de desarrollo de software[cite: 13, 14].
-
-[cite_start]La herramienta debe permitir organizar proyectos y sus tareas, clasificarlas según su tipo, establecer prioridades, registrar responsables y generar reportes[cite: 15].
-
-[cite_start]El sistema contará con dos roles principales[cite: 16]:
-[cite_start]Administrador: Puede crear proyectos, gestionar tareas, asignar responsables y generar reportes completos[cite: 17].
-[cite_start]Colaborador: Puede consultar proyectos, ver tareas asignadas y actualizar su estado[cite: 18].
-
-[cite_start]Este taller requiere implementar herencia, polimorfismo, interfaces y aplicar patrones de diseño (Singleton, Factory, Strategy, Visitor)[cite: 21].
-
-Instrucciones de Uso
-Clona este repositorio:
-
-[https://github.com/ignaciocataldo/BenjaminRojas_IgnacioCataldo_Taller3POO](https://github.com/ignaciocataldo/BenjaminRojas_IgnacioCataldo_Taller3POO)```
+¡Absolutamente! Aquí tienes el archivo README.md completo, formateado con Markdown listo para copiar y pegar directamente en tu repositorio de GitHub.🚀 TaskForge Ltda. | Proyecto de Gestión de Tareas (Taller 03 POO)📋 Resumen del ProyectoTaskForge Ltda. es una herramienta de gestión de proyectos desarrollada para el equipo de software, en el contexto del año 2035. Este sistema permite a los usuarios organizar proyectos, clasificar y priorizar tareas, asignar responsables y generar reportes detallados.El desarrollo se enfoca en la aplicación de principios de Programación Orientada a Objetos (POO) avanzada, incluyendo herencia, polimorfismo, interfaces y la implementación de patrones de diseño.👥 Integrantes y ColaboradoresIntegranteRUTCarreraGitHubBenjamín Rojas22.086.016-7ICCI@benjaminrojasIgnacio Cataldo21.944.808-2ICCI@ignaciocataldoReferentes AcadémicosRolNombreDocentesAlejandro Paolini Godoy, Cristhian Rabi ReyesAyudantesDaniel Durán García, Nicolás Rojas Bustos✨ Requisitos Funcionales Implementados🔑 Roles de UsuarioEl sistema cuenta con dos roles principales:Administrador: Puede crear proyectos, gestionar tareas, asignar responsables y generar reportes completos.Colaborador: Puede consultar proyectos, ver tareas asignadas y actualizar su estado.🧩 Patrones de Diseño AplicadosEste proyecto implementa los siguientes patrones de diseño de la Gang of Four (GoF):Singleton: Para garantizar una única instancia de la clase de gestión del sistema (SistemaImp).Factory Method: Para la creación de objetos de dominio, como los diferentes tipos de tareas.Strategy: Implementado para permitir la selección dinámica de la estrategia de priorización de tareas (por fecha de creación, por tipo/impacto, o por complejidad).Visitor: Utilizado para realizar operaciones sobre la estructura de tareas/proyectos, específicamente para la generación de reportes.🚀 Instrucciones de Uso y Ejecución1. Clonar el RepositorioUtiliza el siguiente comando en tu terminal:Bashgit clone https://github.com/ignaciocataldo/BenjaminRojas_IgnacioCataldo_Taller3POO
+cd BenjaminRojas_IgnacioCataldo_Taller3POO
+2. Abrir y CompilarAbre la carpeta del proyecto en tu IDE de preferencia (Eclipse o IntelliJ IDEA). Asegúrate de que las dependencias del proyecto (JRE System Library - Java SE-21) estén correctamente configuradas.3. Ejecutar el SistemaEjecuta la clase principal (AppMain.java). El sistema se iniciará mostrando el menú de bienvenida y solicitando las credenciales de autenticación para comenzar a operar como Administrador o Colaborador.🛠️ Estructura de PaquetesEl código fuente está organizado lógicamente en los siguientes paquetes:Taller3: Contiene las clases de dominio fundamentales (e.g., Proyecto, Tarea, Usuario).Estrategia: Alojamiento de la interfaz Strategy y sus implementaciones concretas para la priorización.Factory: Contiene la lógica para la creación de instancias complejas.Visitador: Contiene la interfaz Visitor y la lógica para operaciones de recorrido (como la generación de reportes).
