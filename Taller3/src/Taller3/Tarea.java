@@ -7,6 +7,14 @@ public abstract class Tarea {
 	private String idTarea;
 	private String tipo;
 	private String descripcion;
+	public String getTipo() {
+		return tipo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
 	private String estado;
 	private String responsableTarea;
 	private String complejidad;

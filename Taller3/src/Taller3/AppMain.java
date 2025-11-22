@@ -8,13 +8,15 @@ import Visitador.visitorImprimirTarea;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 public class AppMain {
 	private static Sistema system = SistemaImp.getInstance();
 	private static ArrayList<Proyecto> proyectos = system.verProyectos();
 	private static ArrayList<Usuario> usuarios = system.verUsuarios();
 	private static Scanner Escaner;
 	private static Usuario usuarioLogueado = null;
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		cargarUsuarios();
 		cargarProyectos();
 		cargarTareas();
@@ -172,15 +174,15 @@ public class AppMain {
 				System.out.println(proyectoUsuario);
 			}
 			
-		} else {
+		} 
+		if(proyectosUsuario.size()==0) {
 			System.out.println(usuarioLogueado.getUsuario() + " actualmente no tiene proyectos asignados.");
-			
 		}
 		
 	}
 
 
-	private static void menuAdministrador() {
+	private static void menuAdministrador() throws IOException {
 		
 		while(true) {
 			
@@ -210,6 +212,7 @@ public class AppMain {
 					aplicarEstrategia();
 				
 				} else if( opcion == 5) {
+					crearReporte();
 					
 				} else if (opcion == 6) {
 					System.out.println("Saliendo...");
@@ -227,18 +230,21 @@ public class AppMain {
 		}
 		
 	}		
-		private static void aplicarEstrategia() {
-		System.out.println("-----Estrategias-----");
-		System.out.println("1) Estrategia por fecha de creación.");
-		System.out.println("2) Estrategia por impacto.");
-		System.out.println("3) Estraetgia por complejidad. ");
-		System.out.print("Que estrategia va a implementar?: ");
-		
+	
+	
+
+
+	private static void desplegarProyectos() {
+		System.out.println("Proyectos:");
+		int numeroDeProyecto = 1;
+		for (Proyecto proyecto : proyectos) {
+			System.out.println(numeroDeProyecto + ") " + proyecto);
+			numeroDeProyecto += 1;
+		}
 		
 	}
-
-
-		private static void agregarOeleminarTarea() {
+	
+	private static void agregarOeleminarTarea() {
 		Escaner = new Scanner(System.in);
 		
 		
@@ -254,11 +260,19 @@ public class AppMain {
 			eliminarTarea();
 			
 		}
-		
-		
+	}
+	
+		private static void aplicarEstrategia() {
+		System.out.println("-----Estrategias-----");
+		System.out.println("1) Estrategia por fecha de creación.");
+		System.out.println("2) Estrategia por impacto.");
+		System.out.println("3) Estraetgia por complejidad. ");
+		System.out.print("Que estrategia va a implementar?: ");
 		
 		
 	}
+
+
 
 
 	private static void eliminarTarea() {
@@ -283,6 +297,24 @@ public class AppMain {
 		system.eliminarTarea(idProyecto, idTarea, tipoTarea, descripcionTarea, estadoInicialTarea, responsableTarea ,complejidadTarea,fechaTarea);
 		System.out.println("Tarea eliminado con exito!.");			
 		}
+	private static void crearReporte() throws IOException {
+		FileWriter reporteWriter = new FileWriter("reportes.txt", true);
+		
+		for(Proyecto proyecto : proyectos) {
+			reporteWriter.write(proyecto.getId() + ",");
+			reporteWriter.write(proyecto.getNombre() + ",");
+			reporteWriter.write(proyecto.getResponsable());
+			reporteWriter.write("\n");
+			for(Tarea tareaProyecto : proyecto.getTareas()) {
+				reporteWriter.write(">>>>"+tareaProyecto.getIdTarea() + ",");
+				reporteWriter.write(tareaProyecto.getDescripcion() + ",");
+				reporteWriter.write(tareaProyecto.getEstado());
+				reporteWriter.write("\n");
+				
+			}
+		}
+		reporteWriter.close();
+	}
 
 
 	private static void agregarTarea() {
@@ -335,15 +367,6 @@ public class AppMain {
 	}
 
 
-	private static void desplegarProyectos() {
-		System.out.println("Proyectos:");
-		int numeroDeProyecto = 1;
-		for (Proyecto proyecto : proyectos) {
-			System.out.println(numeroDeProyecto + ") " + proyecto);
-			numeroDeProyecto += 1;
-		}
-		
-	}
 
 
 	private static void cargarTareas() throws FileNotFoundException {

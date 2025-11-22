@@ -19,6 +19,14 @@ public class Proyecto {
 		return id;
 	}
 	
+	public String getResponsable() {
+		return responsable;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 	public ArrayList<Tarea> getTareas() {
 		return tareas;
 	}
