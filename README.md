@@ -1,5 +1,3 @@
-¡Absolutamente\! Aquí tienes el archivo **README.md** completo, formateado con Markdown listo para copiar y pegar directamente en tu repositorio de GitHub.
-
 -----
 
 # 🚀 TaskForge Ltda. | Proyecto de Gestión de Tareas (Taller 03 POO)
