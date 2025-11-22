@@ -12,6 +12,7 @@ public class SistemaImp implements Sistema {
 	private static ArrayList<Usuario> usuarios = new ArrayList<>();
 	private static ArrayList<Proyecto> proyectos = new ArrayList<>();
 	private static ArrayList<Tarea> tareas = new ArrayList<>();
+	
 	//---------------Patron Singleton--------------------
 	private static SistemaImp instance;
 	private SistemaImp(){

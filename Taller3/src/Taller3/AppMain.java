@@ -228,7 +228,12 @@ public class AppMain {
 		
 	}		
 		private static void aplicarEstrategia() {
-		// TODO Auto-generated method stub
+		System.out.println("-----Estrategias-----");
+		System.out.println("1) Estrategia por fecha de creación.");
+		System.out.println("2) Estrategia por impacto.");
+		System.out.println("3) Estraetgia por complejidad. ");
+		System.out.print("Que estrategia va a implementar?: ");
+		
 		
 	}
 
