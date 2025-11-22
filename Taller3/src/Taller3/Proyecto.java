@@ -2,11 +2,14 @@ package Taller3;
 
 import java.util.ArrayList;
 
+import Estrategia.Strategy;
+
 public class Proyecto {
 	private String id; 
 	private String nombre;
 	private String responsable;
 	private ArrayList<Tarea> tareas = new ArrayList<>();
+	private Strategy estrategiaActual;
 	
 	public Proyecto(String id, String nombre, String responsable) {
 		super();
@@ -14,7 +17,19 @@ public class Proyecto {
 		this.nombre = nombre;
 		this.responsable = responsable;
 	}
-
+	
+	public void setEstrategia(Strategy nuevaEstrategia) {
+        this.estrategiaActual = nuevaEstrategia;
+    }
+	// Método para ejecutar la priorización
+    public ArrayList<Tarea> priorizarTareas() {
+        if (estrategiaActual == null) {
+            System.out.println("No hay estrategia de priorización asignada.");
+            return this.tareas;
+        }
+        // Delega la responsabilidad de ordenar a la estrategia actual
+        return estrategiaActual.ordenarTareas(this.tareas);
+    }
 	public String getId() {
 		return id;
 	}

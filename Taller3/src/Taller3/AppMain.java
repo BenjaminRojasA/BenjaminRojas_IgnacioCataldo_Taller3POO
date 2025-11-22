@@ -3,6 +3,10 @@ package Taller3;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Estrategia.SatrategyPorFecha;
+import Estrategia.Strategy;
+import Estrategia.StrategyPorComplejidad;
+import Estrategia.StrategyPorImpacto;
 import Visitador.Visitor;
 import Visitador.visitorImprimirTarea;
 
@@ -263,14 +267,73 @@ public class AppMain {
 	}
 	
 		private static void aplicarEstrategia() {
-		System.out.println("-----Estrategias-----");
-		System.out.println("1) Estrategia por fecha de creación.");
-		System.out.println("2) Estrategia por impacto.");
-		System.out.println("3) Estraetgia por complejidad. ");
-		System.out.print("Que estrategia va a implementar?: ");
-		
-		
-	}
+			System.out.println("\n--- ASIGNAR ESTRATEGIA DE PRIORIZACION ---");
+		    
+		    if (proyectos.isEmpty()) {
+		        System.out.println("No hay proyectos registrados.");
+		        return;
+		    }
+		    
+		    System.out.println("Proyectos disponibles:");
+		    for (int i = 0; i < proyectos.size(); i++) {
+		        System.out.println((i + 1) + ". " + proyectos.get(i).getNombre() + " (ID: " + proyectos.get(i).getId() + ")");
+		    }
+		    
+		    System.out.print("Ingrese el número del proyecto: ");
+		    int indiceProyecto = Escaner.nextInt() - 1; 
+		    Escaner.nextLine();
+		    
+		    if (indiceProyecto < 0 || indiceProyecto >= proyectos.size()) {
+		        System.out.println("❌ Opción de proyecto inválida.");
+		        return;
+		    }
+		    
+		    Proyecto proyectoSeleccionado = proyectos.get(indiceProyecto);
+		    
+		    System.out.println("-----Estrategias-----");
+		    System.out.println("1) Estrategia por fecha de creación.");
+		    System.out.println("2) Estrategia por impacto.");
+		    System.out.println("3) Estraetgia por complejidad. ");
+		    System.out.print("Que estrategia va a implementar?: ");
+		    
+		    int opcionEstrategia = Escaner.nextInt(); 
+		    Escaner.nextLine();
+		    
+		    Strategy nuevaEstrategia = null; 
+		    String nombreEstrategia = "";
+		    
+		    switch (opcionEstrategia) {
+		        case 1:
+		            nuevaEstrategia = new SatrategyPorFecha();
+		            nombreEstrategia = "Por Fecha";
+		            break;
+		        case 2:
+		            nuevaEstrategia = new StrategyPorImpacto();
+		            nombreEstrategia = "Por Impacto";
+		            break;
+		        case 3:
+		            nuevaEstrategia = new StrategyPorComplejidad();
+		            nombreEstrategia = "Por Complejidad";
+		            break;
+		        default:
+		            System.out.println("❌ Opción de estrategia inválida. No se asignó ninguna estrategia.");
+		            return;
+		    }
+		    
+		    proyectoSeleccionado.setEstrategia(nuevaEstrategia);
+		    System.out.println("Estrategia **" + nombreEstrategia + "** asignada al proyecto **" + proyectoSeleccionado.getNombre() + "**.");
+		    
+		    System.out.println("\n--- RESULTADO DE LA PRIORIZACIÓN ---");
+		    ArrayList<Tarea> tareasPriorizadas = proyectoSeleccionado.priorizarTareas(); 
+		    
+		    for (Tarea t : tareasPriorizadas) {
+		        System.out.println("ID: " + t.getIdTarea() + 
+		                           " | Fecha: " + t.getFecha() + 
+		                           " | Tipo/Impacto: " + t.getTipo() + 
+		                           " | Complejidad: " + t.getComplejidad());
+		    }
+		    System.out.println("------------------------------------------");
+		}
 
 
 

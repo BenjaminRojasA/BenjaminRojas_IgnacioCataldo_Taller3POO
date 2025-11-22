@@ -18,6 +18,11 @@ public abstract class Tarea {
 	private String estado;
 	private String responsableTarea;
 	private String complejidad;
+	
+	public String getComplejidad() {
+		return complejidad;
+	}
+
 	private String fecha;
 	
 	public Tarea(String idproyecto, String idTarea, String tipo, String descripcion, String estado,
